@@ -59,7 +59,7 @@ function MealDetails({
 		}
 	}, [isVegetarian]);
 
-	// console.log(gluten, "gluten");
+	// console.log(gluten, "Gluten" );
 
 	let content;
 	let vegascontent;
