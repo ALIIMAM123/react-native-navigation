@@ -3,32 +3,44 @@ import { Text, Image, View, StyleSheet, Button, Alert } from "react-native";
 import MealDetails from "../components/MealDetails";
 import { MEALS } from "../data/dummy-data";
 import IconButton from "../components/IconButton";
-
+import { FavouriteContext } from "../store/context/favourite-context";
+import { useContext } from "react";
 function MealDetailsScreen({ route, navigation }) {
+	// context-hook
+	const favouriteMealCtx = useContext(FavouriteContext);
+	// console.log(favouriteMealCtx, "checkk");
+
 	const mealId = route.params.mealId;
 	const selectedMeal = MEALS.find((meal) => meal.id === mealId);
 	// console.log(selectedMeal);
 
-	function headerButtonPressed() {
-		Alert.alert("Alert Msg", "My Alert Msg", [
-			{
-				text: "Cancel",
-				onPress: () => console.log("Cancel Pressed"),
-				style: "cancel",
-			},
-			{ text: "OK", onPress: () => console.log("OK Pressed") },
-		]);
+	// Favourite meal check
+	const mealIsFavourite = favouriteMealCtx.ids.includes(mealId);
+	console.log(mealIsFavourite, "yesOrNo");
+
+	function changeFavouriteStatusHandler() {
+		if (mealIsFavourite) {
+			favouriteMealCtx.removeFavourite(mealId);
+		} else {
+			favouriteMealCtx.addFavourite(mealId);
+		}
+
+		// console.log(mealIsFavourite, "checkk");
 	}
 
 	useLayoutEffect(() => {
 		navigation.setOptions({
 			headerRight: () => {
 				return (
-					<IconButton icon="star" color="white" onPress={headerButtonPressed} />
+					<IconButton
+						icon={mealIsFavourite ? "star" : "star-outline"}
+						color="white"
+						onPress={changeFavouriteStatusHandler}
+					/>
 				);
 			},
 		});
-	}, []);
+	}, [navigation, changeFavouriteStatusHandler]);
 
 	return (
 		<View style={styles.container}>

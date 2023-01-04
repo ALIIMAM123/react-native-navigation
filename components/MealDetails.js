@@ -14,14 +14,14 @@ function MealDetails({
 	isVegetarian,
 	isLactoseFree,
 }) {
-	console.log(isLactoseFree, "isLactoseFree");
+	// console.log(isLactoseFree, "isLactoseFree");
 
 	const [gluten, setGluten] = useState(isGlutenFree);
 	const [isVegas, setIsVegas] = useState(isVegan);
 	const [isvegetarian, setisVegetarian] = useState(isVegetarian);
 	const [islactose, setIsLactose] = useState(isLactoseFree);
 
-	console.log(islactose, "isLactose");
+	// console.log(islactose, "isLactose");
 
 	useLayoutEffect(() => {
 		if (isGlutenFree === true) {

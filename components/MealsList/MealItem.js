@@ -6,7 +6,7 @@ import {
 	Pressable,
 	FlatList,
 } from "react-native";
-import Slider from "./Slider";
+import Slider from "../Slider";
 
 import { useNavigation } from "@react-navigation/native";
 

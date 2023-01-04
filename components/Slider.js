@@ -9,7 +9,7 @@ function Slider(props) {
 		complexityCheck,
 		durationCheck,
 	} = props;
-	console.log(complexityCheck, "affor");
+	// console.log(complexityCheck, "affor");
 	return (
 		<View style={styles.horizontalFlat}>
 			<Text style={styles.eachItem}>{titleCheck}</Text>
